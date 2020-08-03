@@ -1,6 +1,17 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
 import Moment from "react-moment";
-import { SaveBtn, DeleteBtn, RemoveDirBtn, ToggleBikesBtn } from "./UserBtns";
+import {
+  SaveBtn,
+  DeleteBtn,
+  RemoveDirBtn,
+  ToggleBikesBtn,
+  ToggleBLanesBtn,
+  ToggleSRoutesBtn,
+  ToggleEBikesBtn,
+  ToggleDocksBtn,
+  ToggleColBtn,
+} from "./UserBtns";
+import { Box } from "grommet";
 
 import { IDGHeader } from "./Header";
 import { SidebarUser } from "./Sidebar";
@@ -161,8 +172,7 @@ export const UserMap = () => {
           },
         },
         layout: {
-          // make layer visible by default
-          visibility: "visible",
+          visibility: "none",
           "line-join": "round",
           "line-cap": "round",
         },
@@ -188,7 +198,7 @@ export const UserMap = () => {
         },
         paint: {
           "circle-radius": 8,
-          "circle-color": "rgba(55,148,179,1)",
+          "circle-color": "#d4381b",
         },
       });
 
@@ -220,32 +230,41 @@ export const UserMap = () => {
           map.addImage("custom-marker", image);
 
           //feed FILTERED indego station geojson data here
-          map.addSource("points", {
+          /*map.addSource("points", {
             type: "geojson",
             data: {
               type: "FeatureCollection",
               features: bfiltered,
             },
-          });
+          });*/
 
           // Add a symbol layer
           map.addLayer({
             id: "bikestations",
-            type: "symbol",
-            source: "points",
+            type: "circle",
+            source: {
+              type: "geojson",
+              data: {
+                type: "FeatureCollection",
+                features: bfiltered,
+              },
+            },
             layout: {
-              "icon-image": "custom-marker",
-              "icon-allow-overlap": true,
+              visibility: "none",
+            },
+            paint: {
+              "circle-radius": 8,
+              "circle-color": "#2d3e8b",
             },
           });
         }
       );
 
       const flyToStation = (current) => {
-        map.flyTo({
+        /*map.flyTo({
           center: current.geometry.coordinates,
           zoom: 12,
-        });
+        });*/
         setRoute((oldArray) => [...oldArray, current]);
       };
 
@@ -591,25 +610,38 @@ export const UserMap = () => {
     <Fragment>
       <IDGHeader></IDGHeader>
       <SidebarUser>
-        <SaveBtn onClick={() => submit()} />
-        <RemoveDirBtn onClick={() => removeRoute()} />
-        <ToggleBikesBtn onClick={() => toggleLayerB()} />
-        {exroutes.map((exroute, i) => (
-          <SBList
-            key={i}
-            onClick={() => callDirAPI(exroute.origin, exroute.destination)}
-            from={exroute.ostation_name}
-            to={exroute.dstation_name}
-            date={<Moment format="DD MMM YYYY">{exroute.date}</Moment>}
-            time={<Moment format="hh:mm A">{exroute.date}</Moment>}
-          >
-            <DeleteBtn
-              onClick={() => {
-                delRoute(exroute._id);
-              }}
-            />
-          </SBList>
-        ))}
+        <Box direction="row" align="left" gap="small" pad="small">
+          <SaveBtn onClick={() => submit()} />
+          <RemoveDirBtn onClick={() => removeRoute()} />
+        </Box>
+        <br></br>
+        <Box direction="row" align="left" gap="xsmall" pad="small">
+          <ToggleBikesBtn onClick={() => toggleLayerB()} />
+          <ToggleDocksBtn onClick={() => toggleLayerD()} />
+          <ToggleEBikesBtn onClick={() => toggleLayerE()} />
+          <ToggleSRoutesBtn onClick={() => toggleLayerR()} />
+          <ToggleBLanesBtn onClick={() => toggleLayerBL()} />
+          <ToggleColBtn onClick={() => toggleLayerCol()} />
+        </Box>
+        <br></br>
+        <div className="sList padbtm">
+          {exroutes.map((exroute, i) => (
+            <SBList
+              key={i}
+              onClick={() => callDirAPI(exroute.origin, exroute.destination)}
+              from={exroute.ostation_name}
+              to={exroute.dstation_name}
+              date={<Moment format="DD MMM YYYY">{exroute.date}</Moment>}
+              time={<Moment format="hh:mm A">{exroute.date}</Moment>}
+            >
+              <DeleteBtn
+                onClick={() => {
+                  delRoute(exroute._id);
+                }}
+              />
+            </SBList>
+          ))}
+        </div>
       </SidebarUser>
 
       <div className="mapWrapper">

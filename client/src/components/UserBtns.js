@@ -10,6 +10,16 @@ import {
   Checkbox,
 } from "grommet";
 
+import {
+  FormClose,
+  Bike,
+  Return,
+  History,
+  Network,
+  Alert,
+  Action,
+} from "grommet-icons";
+
 const thema = {
   global: {
     colors: {
@@ -40,8 +50,78 @@ export const ToggleBikesBtn = (props) => {
     <Grommet theme={thema}>
       <Button
         size="small"
+        color="brand"
+        icon={<Bike />}
+        onClick={props.onClick}
+        primary
+      />
+    </Grommet>
+  );
+};
+
+export const ToggleDocksBtn = (props) => {
+  return (
+    <Grommet theme={thema}>
+      <Button
+        size="small"
         color="light-2"
-        label="available bikes"
+        icon={<Return />}
+        onClick={props.onClick}
+        secondary
+      />
+    </Grommet>
+  );
+};
+
+export const ToggleEBikesBtn = (props) => {
+  return (
+    <Grommet theme={thema}>
+      <Button
+        size="small"
+        color="dark-1"
+        onClick={props.onClick}
+        icon={<Action color="accent-1" />}
+        secondary
+      />
+    </Grommet>
+  );
+};
+
+export const ToggleSRoutesBtn = (props) => {
+  return (
+    <Grommet theme={thema}>
+      <Button
+        size="small"
+        color="light-2"
+        onClick={props.onClick}
+        icon={<History />}
+        primary
+      />
+    </Grommet>
+  );
+};
+
+export const ToggleBLanesBtn = (props) => {
+  return (
+    <Grommet theme={thema}>
+      <Button
+        size="small"
+        color="light-2"
+        icon={<Network />}
+        onClick={props.onClick}
+        primary
+      />
+    </Grommet>
+  );
+};
+
+export const ToggleColBtn = (props) => {
+  return (
+    <Grommet theme={thema}>
+      <Button
+        size="small"
+        color="light-2"
+        icon={<Alert color="accent-1" />}
         onClick={props.onClick}
         primary
       />
@@ -53,9 +133,10 @@ export const DeleteBtn = (props) => {
   return (
     <Grommet theme={thema}>
       <Button
-        size="small"
+        icon={<FormClose />}
+        size="xsmall"
         color="brand"
-        label="delete route"
+        label="delete"
         onClick={props.onClick}
         primary
       />

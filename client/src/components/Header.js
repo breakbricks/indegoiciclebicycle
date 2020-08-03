@@ -29,7 +29,7 @@ const thema = {
 export const IDGHeader = () => {
   return (
     <Grommet theme={thema}>
-      <Header background="light-4" pad="small">
+      <Header background="#2d3e8b" pad="small">
         <Box direction="row" align="center" gap="small">
           indego icicle bicycle
         </Box>

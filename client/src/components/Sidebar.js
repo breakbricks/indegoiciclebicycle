@@ -53,18 +53,10 @@ const thema = {
 export const SidebarUser = (props) => {
   return (
     <div className="sidebar">
-      <Grommet full theme={grommet}>
-        <Grid
-          columns={["xsmall", "large"]}
-          areas={[["sidebar", "main"]]}
-          gap="xsmall"
-        >
-          <Box gridArea="sidebar">
-            <Profile></Profile>
-          </Box>
-          <Box gridArea="main">{props.children}</Box>
-        </Grid>
-      </Grommet>
+      <div className="sb1">
+        <Profile></Profile>
+      </div>
+      <div className="sb2">{props.children}</div>
     </div>
   );
 };

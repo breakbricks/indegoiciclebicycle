@@ -6,6 +6,7 @@ const thema = {
   global: {
     colors: {
       brand: "#7fbbca",
+      text: { dark: "#f8f8f8", light: "#444444" },
     },
     font: {
       family: "Roboto Mono",
@@ -36,7 +37,7 @@ export const LogoutButton = () => {
 
   return (
     <Grommet theme={thema}>
-      <Button label="log out" onClick={() => logout()} />
+      <Button primary label="log out" onClick={() => logout()} />
     </Grommet>
   );
 };

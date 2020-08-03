@@ -8,6 +8,20 @@ body {
   overflow: auto;
 }
 
+bold {
+  font-weight: bold;
+  font-size: 12px;
+  padding-right: 10px;
+  margin: 0px;
+}
+
+p {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Roboto Mono";
+  font-size: 16px;
+}
+
 .mapWrapper {
   border-left: 1px solid #fff;
   position: absolute;
@@ -27,23 +41,42 @@ body {
   border-right: 1px solid rgba(0, 0, 0, 0.25);
 }
 
-.sList {
+.sb1 {
+  width: 20%;
+  position: absolute;
   height: 100%;
+  left: 0;
+  overflow: hidden;
+}
+
+.sb2 {
+  width: 80%;
+  position: absolute;
+  height: 100%;
+  left: 20%;
+  overflow: hidden;
+}
+
+.sList {
   clear: both;
   margin-top: 0%;
   overflow: auto;
+  padding-right: 20px;
 }
 
 .sList li {
   display: block;
-  border-bottom: 1px solid #eee;
-  padding: 10px;
+  border-bottom: 1px solid lightgrey;
+  /*padding: 10px;*/
   text-decoration: none;
+  padding: 12px;
+  margin: 10px;
+  cursor: pointer;
 }
 
-.sList li:last-child {
+/*.sList li:last-child {
   border-bottom: none;
-}
+}*/
 
 .sList li.active,
 .sList li:hover {
