@@ -9,8 +9,7 @@ body {
 }
 
 .mapWrapper {
-  /*border-left: 1px solid #fff;*/
-  border-top: 1px solid black;
+  border-left: 1px solid #fff;
   position: absolute;
   left: 33.3333%;
   width: 66.6666%;
@@ -26,4 +25,54 @@ body {
   overflow: hidden;
   top: 60px;
   border-right: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.sList {
+  height: 100%;
+  clear: both;
+  margin-top: 0%;
+  overflow: auto;
+}
+
+.sList li {
+  display: block;
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.sList li:last-child {
+  border-bottom: none;
+}
+
+.sList li.active,
+.sList li:hover {
+  background-color: lightblue;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 3px;
+  border-left: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: lightblue;
+}
+
+.clearfix {
+  display: block;
+}
+
+.clearfix::after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }

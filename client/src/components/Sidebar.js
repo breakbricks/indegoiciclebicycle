@@ -14,6 +14,7 @@ import {
   Nav,
   Stack,
   Sidebar,
+  Grid,
 } from "grommet";
 
 import {
@@ -29,7 +30,6 @@ import {
   Close,
   Directions,
   FormLocation,
-  Grid,
   Help,
   History,
   List,
@@ -50,10 +50,21 @@ const thema = {
   },
 };
 
-export const SidebarUser = () => {
+export const SidebarUser = (props) => {
   return (
     <div className="sidebar">
-      <Profile></Profile>
+      <Grommet full theme={grommet}>
+        <Grid
+          columns={["xsmall", "large"]}
+          areas={[["sidebar", "main"]]}
+          gap="xsmall"
+        >
+          <Box gridArea="sidebar">
+            <Profile></Profile>
+          </Box>
+          <Box gridArea="main">{props.children}</Box>
+        </Grid>
+      </Grommet>
     </div>
   );
 };
