@@ -54,7 +54,11 @@ p {
   position: absolute;
   height: 100%;
   left: 20%;
-  overflow: hidden;
+  overflow: auto;
+}
+
+.padbtm {
+  padding-bottom: 50px;
 }
 
 .sList {
@@ -74,9 +78,9 @@ p {
   cursor: pointer;
 }
 
-/*.sList li:last-child {
+.sList li:last-child {
   border-bottom: none;
-}*/
+}
 
 .sList li.active,
 .sList li:hover {

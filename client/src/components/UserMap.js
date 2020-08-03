@@ -610,19 +610,22 @@ export const UserMap = () => {
     <Fragment>
       <IDGHeader></IDGHeader>
       <SidebarUser>
-        <Box direction="row" align="left" gap="small" pad="small">
-          <SaveBtn onClick={() => submit()} />
-          <RemoveDirBtn onClick={() => removeRoute()} />
-        </Box>
         <br></br>
-        <Box direction="row" align="left" gap="xsmall" pad="small">
-          <ToggleBikesBtn onClick={() => toggleLayerB()} />
-          <ToggleDocksBtn onClick={() => toggleLayerD()} />
-          <ToggleEBikesBtn onClick={() => toggleLayerE()} />
-          <ToggleSRoutesBtn onClick={() => toggleLayerR()} />
-          <ToggleBLanesBtn onClick={() => toggleLayerBL()} />
-          <ToggleColBtn onClick={() => toggleLayerCol()} />
-        </Box>
+        <div>
+          <Box direction="row" align="left" gap="small" pad="small">
+            <SaveBtn onClick={() => submit()} />
+            <RemoveDirBtn onClick={() => removeRoute()} />
+          </Box>
+          <br></br>
+          <Box direction="row" align="left" gap="xsmall" pad="small">
+            <ToggleBikesBtn onClick={() => toggleLayerB()} />
+            <ToggleDocksBtn onClick={() => toggleLayerD()} />
+            <ToggleEBikesBtn onClick={() => toggleLayerE()} />
+            <ToggleSRoutesBtn onClick={() => toggleLayerR()} />
+            <ToggleBLanesBtn onClick={() => toggleLayerBL()} />
+            <ToggleColBtn onClick={() => toggleLayerCol()} />
+          </Box>
+        </div>
         <br></br>
         <div className="sList padbtm">
           {exroutes.map((exroute, i) => (

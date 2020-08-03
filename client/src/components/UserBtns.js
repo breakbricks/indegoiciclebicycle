@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Box,
   Image,
@@ -8,6 +8,7 @@ import {
   Text,
   Layer,
   Checkbox,
+  Drop,
 } from "grommet";
 
 import {
@@ -46,6 +47,8 @@ export const LayerBtns = ({ checked: checkedProp, ...rest }) => {
 };*/
 
 export const ToggleBikesBtn = (props) => {
+  const [over, setOver] = useState();
+  const ref = useRef();
   return (
     <Grommet theme={thema}>
       <Button
@@ -54,12 +57,31 @@ export const ToggleBikesBtn = (props) => {
         icon={<Bike />}
         onClick={props.onClick}
         primary
+        ref={ref}
+        onMouseOver={() => setOver(true)}
+        onMouseOut={() => setOver(false)}
+        onFocus={() => {}}
+        onBlur={() => {}}
       />
+      {ref.current && over && (
+        <Drop align={{ left: "right" }} target={ref.current} plain>
+          <Box
+            margin="xsmall"
+            pad="small"
+            background="dark-3"
+            round={{ size: "medium" }}
+          >
+            bikes available
+          </Box>
+        </Drop>
+      )}
     </Grommet>
   );
 };
 
 export const ToggleDocksBtn = (props) => {
+  const [over, setOver] = useState();
+  const ref = useRef();
   return (
     <Grommet theme={thema}>
       <Button
@@ -67,27 +89,65 @@ export const ToggleDocksBtn = (props) => {
         color="light-2"
         icon={<Return />}
         onClick={props.onClick}
-        secondary
+        primary
+        ref={ref}
+        onMouseOver={() => setOver(true)}
+        onMouseOut={() => setOver(false)}
+        onFocus={() => {}}
+        onBlur={() => {}}
       />
+      {ref.current && over && (
+        <Drop align={{ left: "right" }} target={ref.current} plain>
+          <Box
+            margin="xsmall"
+            pad="small"
+            background="dark-3"
+            round={{ size: "medium" }}
+          >
+            docks available
+          </Box>
+        </Drop>
+      )}
     </Grommet>
   );
 };
 
 export const ToggleEBikesBtn = (props) => {
+  const [over, setOver] = useState();
+  const ref = useRef();
   return (
     <Grommet theme={thema}>
       <Button
         size="small"
-        color="dark-1"
+        color="light-2"
         onClick={props.onClick}
         icon={<Action color="accent-1" />}
-        secondary
+        primary
+        ref={ref}
+        onMouseOver={() => setOver(true)}
+        onMouseOut={() => setOver(false)}
+        onFocus={() => {}}
+        onBlur={() => {}}
       />
+      {ref.current && over && (
+        <Drop align={{ left: "right" }} target={ref.current} plain>
+          <Box
+            margin="xsmall"
+            pad="small"
+            background="dark-3"
+            round={{ size: "medium" }}
+          >
+            e-bikes available
+          </Box>
+        </Drop>
+      )}
     </Grommet>
   );
 };
 
 export const ToggleSRoutesBtn = (props) => {
+  const [over, setOver] = useState();
+  const ref = useRef();
   return (
     <Grommet theme={thema}>
       <Button
@@ -96,12 +156,31 @@ export const ToggleSRoutesBtn = (props) => {
         onClick={props.onClick}
         icon={<History />}
         primary
+        ref={ref}
+        onMouseOver={() => setOver(true)}
+        onMouseOut={() => setOver(false)}
+        onFocus={() => {}}
+        onBlur={() => {}}
       />
+      {ref.current && over && (
+        <Drop align={{ left: "right" }} target={ref.current} plain>
+          <Box
+            margin="xsmall"
+            pad="small"
+            background="dark-3"
+            round={{ size: "medium" }}
+          >
+            saved routes
+          </Box>
+        </Drop>
+      )}
     </Grommet>
   );
 };
 
 export const ToggleBLanesBtn = (props) => {
+  const [over, setOver] = useState();
+  const ref = useRef();
   return (
     <Grommet theme={thema}>
       <Button
@@ -110,12 +189,31 @@ export const ToggleBLanesBtn = (props) => {
         icon={<Network />}
         onClick={props.onClick}
         primary
+        ref={ref}
+        onMouseOver={() => setOver(true)}
+        onMouseOut={() => setOver(false)}
+        onFocus={() => {}}
+        onBlur={() => {}}
       />
+      {ref.current && over && (
+        <Drop align={{ left: "right" }} target={ref.current} plain>
+          <Box
+            margin="xsmall"
+            pad="small"
+            background="dark-3"
+            round={{ size: "medium" }}
+          >
+            bike lanes
+          </Box>
+        </Drop>
+      )}
     </Grommet>
   );
 };
 
 export const ToggleColBtn = (props) => {
+  const [over, setOver] = useState();
+  const ref = useRef();
   return (
     <Grommet theme={thema}>
       <Button
@@ -124,7 +222,24 @@ export const ToggleColBtn = (props) => {
         icon={<Alert color="accent-1" />}
         onClick={props.onClick}
         primary
+        ref={ref}
+        onMouseOver={() => setOver(true)}
+        onMouseOut={() => setOver(false)}
+        onFocus={() => {}}
+        onBlur={() => {}}
       />
+      {ref.current && over && (
+        <Drop align={{ left: "right" }} target={ref.current} plain>
+          <Box
+            margin="xsmall"
+            pad="small"
+            background="dark-3"
+            round={{ size: "medium" }}
+          >
+            collisions data
+          </Box>
+        </Drop>
+      )}
     </Grommet>
   );
 };
