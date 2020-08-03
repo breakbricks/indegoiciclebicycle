@@ -1,9 +1,29 @@
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow: auto;
+}
+
 .mapWrapper {
-  border-left: 1px solid #fff;
+  /*border-left: 1px solid #fff;*/
   border-top: 1px solid black;
   position: absolute;
   left: 33.3333%;
   width: 66.6666%;
-  top: 17%;
+  top: 60px;
   bottom: 0;
+}
+
+.sidebar {
+  width: 33.3333%;
+  position: absolute;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  top: 60px;
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
 }
