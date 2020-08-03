@@ -15,11 +15,30 @@ bold {
   margin: 0px;
 }
 
+h1 {
+  font-family: "Roboto Mono";
+  font-weight: lighter;
+}
+h4 {
+  font-family: "Roboto Mono";
+  font-weight: lighter;
+  padding: 0px;
+  margin: 5px;
+}
+
 p {
   padding: 0px;
   margin: 0px;
   font-family: "Roboto Mono";
   font-size: 16px;
+}
+
+.demoimg {
+  border-radius: 4px;
+  padding-right: 200px;
+  padding-top: 200px;
+  width: 500px;
+  float: right;
 }
 
 .mapWrapper {
@@ -38,7 +57,6 @@ p {
   left: 0;
   overflow: hidden;
   top: 60px;
-  border-right: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .sb1 {
@@ -54,6 +72,16 @@ p {
   position: absolute;
   height: 100%;
   left: 20%;
+  overflow: auto;
+}
+
+.psb {
+  width: 100%;
+  top: 23%;
+  position: absolute;
+  padding-right: 10px;
+  height: 70%;
+  left: 15%;
   overflow: auto;
 }
 

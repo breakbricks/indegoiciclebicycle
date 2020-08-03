@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
 import "../App.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import { PublicModal } from "./PublicModal";
 
-import logo from "../assets/favicon.png";
+import hero from "../assets/shiny-happy-people.png";
 
 import {
   Avatar,
@@ -63,8 +64,16 @@ export const SidebarUser = (props) => {
 
 export const SidebarPublic = () => {
   return (
-    <div className="sidebar">
-      <h1>hello, world</h1>
+    <div>
+      <div className="psb">
+        <img src={hero}></img>
+        <h1>
+          ride to live
+          <br></br>
+          live to ride
+        </h1>
+        <PublicModal></PublicModal>
+      </div>
     </div>
   );
 };
