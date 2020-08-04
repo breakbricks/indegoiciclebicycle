@@ -11,11 +11,13 @@ import {
   ToggleDocksBtn,
   ToggleColBtn,
 } from "./UserBtns";
-import { Box } from "grommet";
+import { Box, Heading } from "grommet";
+import { Bike, FormClock, FormLocation } from "grommet-icons";
 
 import { IDGHeader } from "./Header";
 import { SidebarUser } from "./Sidebar";
 import { SBList } from "./SBList";
+import { SBListModal } from "./SBListModal";
 
 import icon from "../assets/icon.png";
 import "../App.css";
@@ -28,7 +30,7 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 //import Auth0
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 //import MapboxDirections
 //https://www.npmjs.com/package/@mapbox/mapbox-gl-directions
@@ -57,6 +59,10 @@ export const UserMap = () => {
   const [route, setRoute] = useState([]);
   //existing/saved routes
   const [exroutes, setExRoutes] = useState([]);
+  const instructions = [];
+  const [insItems, setInsItems] = useState();
+  const [duration, setDuration] = useState();
+  const [distance, setDistance] = useState();
 
   //https://github.com/mapbox/mapbox-gl-directions/blob/master/src/directions_style.js
   const directions = new MapboxDirections({
@@ -109,6 +115,58 @@ export const UserMap = () => {
     map.on("load", () => {
       setMap(map);
       map.resize();
+
+      //========3d===========//
+
+      // Insert the layer beneath any symbol layer.
+      var layers = map.getStyle().layers;
+
+      var labelLayerId;
+      for (var i = 0; i < layers.length; i++) {
+        if (layers[i].type === "symbol" && layers[i].layout["text-field"]) {
+          labelLayerId = layers[i].id;
+          break;
+        }
+      }
+
+      map.addLayer(
+        {
+          id: "3d-buildings",
+          source: "composite",
+          "source-layer": "building",
+          filter: ["==", "extrude", "true"],
+          type: "fill-extrusion",
+          minzoom: 15,
+          paint: {
+            "fill-extrusion-color": "#aaa",
+
+            // use an 'interpolate' expression to add a smooth transition effect to the
+            // buildings as the user zooms in
+            "fill-extrusion-height": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              15,
+              0,
+              15.05,
+              ["get", "height"],
+            ],
+            "fill-extrusion-base": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              15,
+              0,
+              15.05,
+              ["get", "min_height"],
+            ],
+            "fill-extrusion-opacity": 0.6,
+          },
+        },
+        labelLayerId
+      );
+
+      //====================//
 
       //console.log(efiltered);
       //console.log(lanes);
@@ -197,8 +255,9 @@ export const UserMap = () => {
           visibility: "none",
         },
         paint: {
-          "circle-radius": 8,
+          "circle-radius": 6,
           "circle-color": "#d4381b",
+          "circle-opacity": 0.8,
         },
       });
 
@@ -217,8 +276,9 @@ export const UserMap = () => {
           visibility: "none",
         },
         paint: {
-          "circle-radius": 8,
+          "circle-radius": 6,
           "circle-color": "#c8c700",
+          "circle-opacity": 0.5,
         },
       });
 
@@ -253,8 +313,9 @@ export const UserMap = () => {
               visibility: "none",
             },
             paint: {
-              "circle-radius": 8,
+              "circle-radius": 6,
               "circle-color": "#2d3e8b",
+              "circle-opacity": 0.6,
             },
           });
         }
@@ -347,13 +408,21 @@ export const UserMap = () => {
 
   //toggle stations displayroute layer
   const toggleLayerR = () => {
-    const visibility = map.getLayoutProperty("displayroute", "visibility");
-    if (visibility === "visible") {
-      map.setLayoutProperty("displayroute", "visibility", "none");
-    } else {
-      map.setLayoutProperty("displayroute", "visibility", "visible");
-    }
+    return map.getLayoutProperty("displayroute", "visibility") === "visible"
+      ? map.setLayoutProperty("displayroute", "visibility", "none")
+      : map.setLayoutProperty("displayroute", "visibility", "visible");
   };
+
+  /* //toggle stations displayroute layer
+  const toggleLayerR = () => {
+    return map.setLayoutProperty(
+      "displayroute",
+      "visibility",
+      map.getLayoutProperty("displayroute", "visibility") === "visible"
+        ? "none"
+        : "visible"
+    );
+  };*/
 
   //toggle bike lanes layer
   const toggleLayerBL = () => {
@@ -534,6 +603,16 @@ export const UserMap = () => {
 
       //resdata.legs[0].steps[i].maneuver.instruction //"Head south on North Broad Street (PA 611)"
       //modal?
+      const steps = resdata.legs[0].steps;
+
+      for (let i = 0; i < steps.length; i++) {
+        instructions.push(steps[i].maneuver.instruction);
+      }
+
+      setInsItems(instructions.map((ins) => <li>{ins}</li>));
+      setDuration(`duration: ${Math.floor(resdata.duration / 60)} min`);
+      setDistance(`distance: ${+(resdata.distance / 1000).toFixed(2)} km`);
+
       const displayroute = resdata.geometry.coordinates;
 
       //console.log(displayroute);
@@ -553,7 +632,7 @@ export const UserMap = () => {
         closeOnClick: false,
       });
 
-      //display distancee and duration information on hover
+      //display distance and duration information on hover
       map.on("mouseenter", "displayroute", function (e) {
         rpopup
           .setLngLat(e.lngLat)
@@ -611,12 +690,11 @@ export const UserMap = () => {
       <IDGHeader></IDGHeader>
       <SidebarUser>
         <br></br>
-        <div>
+        <div className="sbfix">
           <Box direction="row" align="left" gap="small" pad="small">
             <SaveBtn onClick={() => submit()} />
             <RemoveDirBtn onClick={() => removeRoute()} />
           </Box>
-          <br></br>
           <Box direction="row" align="left" gap="xsmall" pad="small">
             <ToggleBikesBtn onClick={() => toggleLayerB()} />
             <ToggleDocksBtn onClick={() => toggleLayerD()} />
@@ -637,11 +715,19 @@ export const UserMap = () => {
               date={<Moment format="DD MMM YYYY">{exroute.date}</Moment>}
               time={<Moment format="hh:mm A">{exroute.date}</Moment>}
             >
-              <DeleteBtn
-                onClick={() => {
-                  delRoute(exroute._id);
-                }}
-              />
+              <Box direction="row" align="left" gap="xsmall" pad="small">
+                <DeleteBtn
+                  onClick={() => {
+                    delRoute(exroute._id);
+                  }}
+                />
+                <SBListModal>
+                  {insItems}
+                  <br></br>
+                  <h6>{duration}</h6>
+                  <h6>{distance}</h6>
+                </SBListModal>
+              </Box>
             </SBList>
           ))}
         </div>

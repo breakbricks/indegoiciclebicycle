@@ -19,11 +19,12 @@ h1 {
   font-family: "Roboto Mono";
   font-weight: lighter;
 }
-h4 {
+h4,
+h6 {
   font-family: "Roboto Mono";
   font-weight: lighter;
   padding: 0px;
-  margin: 5px;
+  margin: 0px;
 }
 
 p {
@@ -31,6 +32,20 @@ p {
   margin: 0px;
   font-family: "Roboto Mono";
   font-size: 16px;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li:before {
+  content: "+";
+  margin-right: 14px;
+}
+
+ul li {
+  font-size: 16px;
+  padding: 8px;
 }
 
 .demoimg {
@@ -57,6 +72,10 @@ p {
   left: 0;
   overflow: hidden;
   top: 60px;
+}
+
+.sbfix {
+  height: 100px;
 }
 
 .sb1 {
@@ -90,6 +109,8 @@ p {
 }
 
 .sList {
+  top: 150px;
+  position: absolute;
   clear: both;
   margin-top: 0%;
   overflow: auto;

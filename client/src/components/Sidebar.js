@@ -18,26 +18,7 @@ import {
   Grid,
 } from "grommet";
 
-import {
-  Bike,
-  Indicator,
-  Navigate,
-  AddCircle,
-  Add,
-  Layer,
-  Alert,
-  Apps,
-  Clear,
-  Close,
-  Directions,
-  FormLocation,
-  Help,
-  History,
-  List,
-  Location,
-  LocationPin,
-  Map,
-} from "grommet-icons";
+import { Bike, History, List, Location, LocationPin, Map } from "grommet-icons";
 
 const thema = {
   global: {
@@ -79,8 +60,8 @@ export const SidebarPublic = () => {
 };
 
 export const iconsMap = (color) => [
-  <Map color={color} />,
-  <Bike color={color} />,
+  <Map onClick={() => console.log("Meooowww")} color={color} />,
+  <Bike onClick={() => console.log("Bike!")} color={color} />,
   <Location color={color} />,
   <History color={color} />,
 ];
@@ -148,6 +129,8 @@ export const TooltipsSidebar = (props) => (
 export const Profile = () => {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
+  const [over, setOver] = useState();
+  const ref = useRef();
 
   useEffect(() => {
     const getUserMetadata = async () => {
@@ -182,12 +165,33 @@ export const Profile = () => {
     isAuthenticated && (
       <TooltipsSidebar>
         <Box>
-          <Avatar
-            border={{ color: "white", size: "small" }}
-            margin="small"
-            src={user.picture}
-            alt={user.name}
-          />
+          <Button
+            ref={ref}
+            onMouseOver={() => setOver(true)}
+            onMouseOut={() => setOver(false)}
+            onFocus={() => {}}
+            onBlur={() => {}}
+          >
+            <Avatar
+              border={{ color: "white", size: "small" }}
+              margin="small"
+              src={user.picture}
+              alt={user.name}
+            />
+          </Button>
+
+          {ref.current && over && (
+            <Drop align={{ left: "right" }} target={ref.current} plain>
+              <Box
+                margin="xsmall"
+                pad="small"
+                background="light-2"
+                round={{ size: "medium" }}
+              >
+                <p>hello, {user.name}!</p>
+              </Box>
+            </Drop>
+          )}
         </Box>
       </TooltipsSidebar>
     )
