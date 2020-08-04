@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef, Fragment } from "react";
 import "../App.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { PublicModal } from "./PublicModal";
+import { RideButton } from "./AuthBtns";
 
-import hero from "../assets/shiny-happy-people.png";
+import hero from "../assets/bike3.png";
 
 import {
   Avatar,
@@ -45,14 +46,15 @@ export const SidebarUser = (props) => {
 
 export const SidebarPublic = () => {
   return (
-    <div>
-      <div className="psb">
-        <img src={hero}></img>
-        <h1>
-          ride to live
-          <br></br>
-          live to ride
-        </h1>
+    <div className="psb">
+      <img className="tdfimg" src={hero}></img>
+      <br></br>
+      <div className="ridebtn">
+        <br></br>
+        <h4>let's go places</h4>
+        <br></br>
+        <RideButton></RideButton>
+        <br></br>
         <PublicModal></PublicModal>
       </div>
     </div>

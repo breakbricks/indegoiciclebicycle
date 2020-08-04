@@ -48,12 +48,21 @@ ul li {
   padding: 8px;
 }
 
-.demoimg {
-  border-radius: 4px;
-  padding-right: 200px;
-  padding-top: 200px;
-  width: 500px;
+i {
+  font-family: "Roboto Mono";
+  font-weight: lighter;
+  font-size: 8px;
+  padding-bottom: 24px;
+}
+
+.tdfimg {
+  width: 75%;
+}
+
+.ridebtn {
+  text-align: right;
   float: right;
+  padding-right: 25%;
 }
 
 .mapWrapper {
@@ -96,11 +105,11 @@ ul li {
 
 .psb {
   width: 100%;
-  top: 23%;
+  top: 18%;
   position: absolute;
   padding-right: 10px;
-  height: 70%;
-  left: 15%;
+  height: 100%;
+  left: 10%;
   overflow: auto;
 }
 

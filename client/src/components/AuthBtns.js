@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { grommet, Box, Button, Grommet } from "grommet";
-
+import { Add, Close, Bike, MapLocation } from "grommet-icons";
 const thema = {
   global: {
     colors: {
@@ -13,6 +13,24 @@ const thema = {
       size: "24px",
     },
   },
+};
+
+export const RideButton = () => {
+  const { loginWithRedirect } = useAuth0();
+
+  return (
+    <Grommet theme={thema}>
+      <Button
+        secondary
+        icon={<Bike />}
+        label="find a bike"
+        onClick={() => {
+          console.log("clicked");
+          loginWithRedirect();
+        }}
+      />
+    </Grommet>
+  );
 };
 
 export const LoginButton = () => {

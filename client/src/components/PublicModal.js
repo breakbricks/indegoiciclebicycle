@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Add, Close, Bike } from "grommet-icons";
+import { Add, Close, Bike, MapLocation } from "grommet-icons";
 import { PublicMap } from "./PublicMap";
 
 import {
@@ -37,14 +37,16 @@ export const PublicModal = () => {
     <Grommet theme={thema}>
       <Button
         secondary
+        color="light-2"
+        align="right"
         size="small"
-        label="find a ride"
-        icon={<Bike />}
+        label="see map"
+        icon={<MapLocation />}
         onClick={onOpen}
       />
       {open && (
         <Layer
-          position="right"
+          position="left"
           full="vertical"
           modal
           onClickOutside={onClose}
@@ -55,6 +57,7 @@ export const PublicModal = () => {
               <Heading level={2} margin="none"></Heading>
               <Box align="center">
                 <h4>all indego bike stations</h4>
+                <br></br>
                 <p>[log in for more information]</p>
               </Box>
               <Button icon={<Close />} onClick={onClose} />
