@@ -63,8 +63,6 @@ export const SidebarPublic = () => {
         <br></br>
         <div className="ridebtn">
           <br></br>
-          <h4>let's go places</h4>
-          <br></br>
           <RideButton></RideButton>
           <br></br>
           <PublicModal></PublicModal>
