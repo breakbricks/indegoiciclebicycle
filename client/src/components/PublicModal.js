@@ -52,7 +52,7 @@ export const PublicModal = () => {
           onClickOutside={onClose}
           onEsc={onClose}
         >
-          <Box fill="vertical" overflow="auto" width="xlarge" pad="large">
+          <Box fill="vertical" overflow="auto" pad="medium">
             <Box flex={false} direction="row" justify="between">
               <Heading level={2} margin="none"></Heading>
               <Box align="center">
@@ -62,7 +62,7 @@ export const PublicModal = () => {
               </Box>
               <Button icon={<Close />} onClick={onClose} />
             </Box>
-            <Box pad={{ vertical: "medium" }}>
+            <Box pad={"medium"} flex="true">
               <PublicMap></PublicMap>
             </Box>
           </Box>

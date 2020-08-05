@@ -8,6 +8,18 @@ body {
   overflow: auto;
 }
 
+sbbold {
+  font-weight: bold;
+  font-size: 10px;
+  color: grey;
+  padding-left: 20px;
+}
+
+sbbold:before {
+  content: "+";
+  margin-right: 14px;
+}
+
 bold {
   font-weight: bold;
   font-size: 12px;
@@ -63,6 +75,14 @@ i {
   text-align: right;
   float: right;
   padding-right: 25%;
+  overflow: hidden;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 .mapWrapper {
@@ -84,7 +104,7 @@ i {
 }
 
 .sbfix {
-  height: 100px;
+  height: 150px;
 }
 
 .sb1 {
@@ -105,12 +125,12 @@ i {
 
 .psb {
   width: 100%;
-  top: 18%;
+  top: 15%;
   position: absolute;
   padding-right: 10px;
-  height: 100%;
+  height: 80%;
   left: 10%;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .padbtm {
@@ -118,11 +138,10 @@ i {
 }
 
 .sList {
-  top: 150px;
+  top: 210px;
   position: absolute;
   clear: both;
   margin-top: 0%;
-  overflow: auto;
   padding-right: 20px;
 }
 

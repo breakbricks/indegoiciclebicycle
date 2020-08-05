@@ -465,7 +465,7 @@ export const UserMap = () => {
         dstation_address: route[route.length - 1].properties.addressStreet,
         destination: route[route.length - 1].geometry.coordinates,
       }).then((res) => {
-        alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
         API.getAllRoutes({
           user_id: user.email,
         }).then((res) => {
@@ -691,10 +691,14 @@ export const UserMap = () => {
       <SidebarUser>
         <br></br>
         <div className="sbfix">
+          <sbbold>ACTIONS</sbbold>
           <Box direction="row" align="left" gap="small" pad="small">
             <SaveBtn onClick={() => submit()} />
             <RemoveDirBtn onClick={() => removeRoute()} />
           </Box>
+
+          <sbbold>TOGGLE LAYERS</sbbold>
+
           <Box direction="row" align="left" gap="xsmall" pad="small">
             <ToggleBikesBtn onClick={() => toggleLayerB()} />
             <ToggleDocksBtn onClick={() => toggleLayerD()} />
@@ -705,6 +709,9 @@ export const UserMap = () => {
           </Box>
         </div>
         <br></br>
+
+        <sbbold>SAVED ROUTES</sbbold>
+
         <div className="sList padbtm">
           {exroutes.map((exroute, i) => (
             <SBList

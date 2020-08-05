@@ -3,6 +3,7 @@ import "../App.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { PublicModal } from "./PublicModal";
 import { RideButton } from "./AuthBtns";
+import { PublicFooter } from "./Footer";
 
 import hero from "../assets/bike3.png";
 
@@ -19,7 +20,17 @@ import {
   Grid,
 } from "grommet";
 
-import { Bike, History, List, Location, LocationPin, Map } from "grommet-icons";
+import {
+  Bike,
+  History,
+  List,
+  Location,
+  LocationPin,
+  Map,
+  Apps,
+  Github,
+  DocumentStore,
+} from "grommet-icons";
 
 const thema = {
   global: {
@@ -46,26 +57,55 @@ export const SidebarUser = (props) => {
 
 export const SidebarPublic = () => {
   return (
-    <div className="psb">
-      <img className="tdfimg" src={hero}></img>
-      <br></br>
-      <div className="ridebtn">
+    <div>
+      <div className="psb">
+        <img className="tdfimg" src={hero}></img>
         <br></br>
-        <h4>let's go places</h4>
-        <br></br>
-        <RideButton></RideButton>
-        <br></br>
-        <PublicModal></PublicModal>
+        <div className="ridebtn">
+          <br></br>
+          <h4>let's go places</h4>
+          <br></br>
+          <RideButton></RideButton>
+          <br></br>
+          <PublicModal></PublicModal>
+          <br></br>
+        </div>
+      </div>
+      <div className="footer">
+        <PublicFooter></PublicFooter>
       </div>
     </div>
   );
 };
 
 export const iconsMap = (color) => [
-  <Map onClick={() => console.log("Meooowww")} color={color} />,
-  <Bike onClick={() => console.log("Bike!")} color={color} />,
-  <Location color={color} />,
-  <History color={color} />,
+  <Bike
+    onClick={() =>
+      window.open("https://www.rideindego.com/become-a-member/", "_blank")
+    }
+    color={color}
+  />,
+  <Apps
+    onClick={() =>
+      window.open("https://www.rideindego.com/get-the-indego-app/", "_blank")
+    }
+    color={color}
+  />,
+  <DocumentStore
+    onClick={() =>
+      window.open("https://www.rideindego.com/about/data/", "_blank")
+    }
+    color={color}
+  />,
+  <Github
+    onClick={() =>
+      window.open(
+        "https://github.com/breakbricks/indegoiciclebicycle",
+        "_blank"
+      )
+    }
+    color={color}
+  />,
 ];
 export const SidebarButton = ({ iconName, index }) => {
   const [over, setOver] = useState();
@@ -117,7 +157,7 @@ export const TooltipsSidebar = (props) => (
         pad="none"
       >
         <Nav>
-          {["Indego Bike Stations", "Bike Lanes", "Data", "Saved Routes"].map(
+          {["Buy a Pass", "Download Mobile App", "Data", "Docs"].map(
             (iconName, index) => (
               <SidebarButton key={iconName} iconName={iconName} index={index} />
             )

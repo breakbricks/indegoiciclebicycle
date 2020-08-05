@@ -14,6 +14,8 @@ import {
   ResponsiveContext,
 } from "grommet";
 
+import { Location, IceCream, Bike } from "grommet-icons";
+
 const thema = {
   global: {
     colors: {
@@ -31,7 +33,8 @@ export const IDGHeader = () => {
     <Grommet theme={thema}>
       <Header background="#2d3e8b" pad="small">
         <Box direction="row" align="center" gap="small">
-          indego icicle bicycle
+          indego <Location size="medium" /> icicle <IceCream size="medium" />{" "}
+          bicycle <Bike size="medium" />
         </Box>
         <AuthBtns></AuthBtns>
       </Header>

@@ -19,6 +19,7 @@ import {
   Network,
   Alert,
   Action,
+  StatusGood,
 } from "grommet-icons";
 
 const thema = {
@@ -260,16 +261,50 @@ export const DeleteBtn = (props) => {
 };
 
 export const SaveBtn = (props) => {
+  const [open, setOpen] = useState();
+  const onOpen = () => setOpen(true);
+  const onClose = () => setOpen(undefined);
+
   return (
     <Grommet theme={thema}>
-      <Button
-        primary
-        size="small"
-        color="brand"
-        label="save route"
-        onClick={props.onClick}
-        primary
-      />
+      <Box onClick={() => onOpen()}>
+        <Button
+          primary
+          size="small"
+          color="brand"
+          label="save route"
+          onClick={props.onClick}
+          primary
+        />
+      </Box>
+
+      {open && (
+        <Layer
+          position="bottom"
+          modal={false}
+          margin={{ vertical: "medium", horizontal: "small" }}
+          onEsc={onClose}
+          responsive={false}
+          plain
+        >
+          <Box
+            align="center"
+            direction="row"
+            gap="small"
+            justify="between"
+            round="medium"
+            elevation="medium"
+            pad={{ vertical: "small", horizontal: "small" }}
+            background="#7fbbca"
+          >
+            <Box align="center" direction="row" gap="small">
+              <StatusGood />
+              <Text>success! route saved.</Text>
+            </Box>
+            <Button icon={<FormClose />} onClick={onClose} plain />
+          </Box>
+        </Layer>
+      )}
     </Grommet>
   );
 };
