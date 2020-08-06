@@ -417,15 +417,17 @@ export const UserMap = () => {
       };
 
       map.on("click", function (e) {
-        // check if a feature in the "bikestations" layer exists
+        // check if a feature in the "bikestations"/ "ebikestations"/ "dstations" layers exists
         const features = map.queryRenderedFeatures(e.point, {
           layers: ["bikestations", "ebikestations", "dstations"],
         });
 
         // if yes, then:
         if (features.length) {
+          //set clickedMarker with features' properties/ geometry etc.
           const clickedMarker = features[0];
-          // fly to the point
+          // flyToStation function grabs the point coordinates of the clicked marker and pushes it into route array using setRoute(), keeping previous coordinates, but pushing the newest clicked marker's coordinates into array.
+          // on submit - it saves the last two markers' coordinates as the newest origin and destination
           flyToStation(clickedMarker);
           // close all other popups and show popup for clicked marker on map
           createPopUp(clickedMarker);
