@@ -531,7 +531,7 @@ export const UserMap = () => {
     console.log(route);
     try {
       API.saveRoute({
-        user_id: user.email,
+        user_id: user.email || user.sub,
         //get second last in array
         ostation_id:
           route.length > 2
@@ -557,7 +557,7 @@ export const UserMap = () => {
       }).then((res) => {
         //alert(JSON.stringify(res));
         API.getAllRoutes({
-          user_id: user.email,
+          user_id: user.email || user.sub,
         }).then((res) => {
           console.log(res.data);
           setExRoutes(res.data);
@@ -574,7 +574,7 @@ export const UserMap = () => {
         console.log(res.data);
         console.log("deleted");
         API.getAllRoutes({
-          user_id: user.email,
+          user_id: user.email || user.sub,
         }).then((res) => {
           console.log(res.data);
           //set existing routes [] to res.data
@@ -585,10 +585,10 @@ export const UserMap = () => {
   };
 
   useEffect(() => {
-    //get all routes in database with user_id: of user.email
+    //get all routes in database with user_id: of user.email/ user.sub (for github login)
     //see utils/API.js and idgcontroller.js
     API.getAllRoutes({
-      user_id: user.email,
+      user_id: user.email || user.sub,
     }).then((res) => {
       console.log(res.data);
       //set existing routes [] to res.data
