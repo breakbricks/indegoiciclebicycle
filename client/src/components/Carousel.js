@@ -55,7 +55,9 @@ export const InfoCarousel = ({ initialChild, ...props }) => {
               <h4>? what</h4>
               <br></br>
               <ul>
-                <li>save &amp; view favorite routes </li>
+                <li>
+                  get directions to &amp; from stations/ origin/ destination{" "}
+                </li>
               </ul>
               <br></br>
               <Image fit="contain" src={savedroutes} />
