@@ -384,7 +384,7 @@ export const UserMap = () => {
           .addTo(map);
       });
 
-      map.on("mouseleave", "places", function () {
+      map.on("mouseleave", "woodericicle", function () {
         map.getCanvas().style.cursor = "";
         iciclepopup.remove();
       });
