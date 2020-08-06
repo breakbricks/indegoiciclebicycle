@@ -20,6 +20,8 @@ import {
   Alert,
   Action,
   StatusGood,
+  IceCream,
+  Login,
 } from "grommet-icons";
 
 const thema = {
@@ -46,6 +48,39 @@ export const LayerBtns = ({ checked: checkedProp, ...rest }) => {
     </Grommet>
   );
 };*/
+
+export const ToggleIcicleBtn = (props) => {
+  const [over, setOver] = useState();
+  const ref = useRef();
+  return (
+    <Grommet theme={thema}>
+      <Button
+        size="small"
+        color="light-2"
+        onClick={props.onClick}
+        icon={<IceCream color="#ffcdcc" />}
+        primary
+        ref={ref}
+        onMouseOver={() => setOver(true)}
+        onMouseOut={() => setOver(false)}
+        onFocus={() => {}}
+        onBlur={() => {}}
+      />
+      {ref.current && over && (
+        <Drop align={{ left: "right" }} target={ref.current} plain>
+          <Box
+            margin="xsmall"
+            pad="small"
+            background="dark-3"
+            round={{ size: "medium" }}
+          >
+            wooder ice
+          </Box>
+        </Drop>
+      )}
+    </Grommet>
+  );
+};
 
 export const ToggleBikesBtn = (props) => {
   const [over, setOver] = useState();
@@ -88,7 +123,7 @@ export const ToggleDocksBtn = (props) => {
       <Button
         size="small"
         color="light-2"
-        icon={<Return />}
+        icon={<Login color="#c8c700" />}
         onClick={props.onClick}
         primary
         ref={ref}
@@ -122,7 +157,7 @@ export const ToggleEBikesBtn = (props) => {
         size="small"
         color="light-2"
         onClick={props.onClick}
-        icon={<Action color="accent-1" />}
+        icon={<Action color="#eb8704" />}
         primary
         ref={ref}
         onMouseOver={() => setOver(true)}
@@ -155,7 +190,7 @@ export const ToggleSRoutesBtn = (props) => {
         size="small"
         color="light-2"
         onClick={props.onClick}
-        icon={<History />}
+        icon={<History color="#7fbbca" />}
         primary
         ref={ref}
         onMouseOver={() => setOver(true)}
@@ -187,7 +222,7 @@ export const ToggleBLanesBtn = (props) => {
       <Button
         size="small"
         color="light-2"
-        icon={<Network />}
+        icon={<Network color="#9a7e71" />}
         onClick={props.onClick}
         primary
         ref={ref}
@@ -220,7 +255,7 @@ export const ToggleColBtn = (props) => {
       <Button
         size="small"
         color="light-2"
-        icon={<Alert color="accent-1" />}
+        icon={<Alert color="#717cb4" />}
         onClick={props.onClick}
         primary
         ref={ref}

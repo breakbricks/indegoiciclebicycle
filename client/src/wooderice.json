@@ -1,0 +1,145 @@
+[
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "John's Water Ice",
+      "address": "701 Christian St, Philadelphia, PA 19147"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-75.154897, 39.938354]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "Lucio Mancuso & Son",
+      "address": "1902 E Passyunk Ave, Philadelphia, PA 19148"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-75.167637, 39.926472]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "Siddiq’s Real Fruit Water Ice",
+      "address": "264 S 60th St, Philadelphia, PA 19139"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-75.241979, 39.957166]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "Mama Maria's Homemade Italian Ice",
+      "address": "2900 Aramingo Ave, Philadelphia, PA 19134"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-75.113402, 39.985028]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "Tranzilli's Water Ice",
+      "address": "5901 Belfield Ave, Philadelphia, PA"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-75.170083, 40.045128]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "Arctic Scoop",
+      "address": "1812 E Passyunk Ave, Philadelphia, PA 19148"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-75.16652, 39.927448]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "La Guerrerense",
+      "address": "1143 S 9th St, Philadelphia, PA 19147"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-75.15853017568588, 39.935093169510736]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "Somerset Splits",
+      "address": "2600 E Somerset St, Philadelphia, PA 19134"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-75.113128, 39.980524]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "Weckerly's",
+      "address": "9 W Girard Ave, Philadelphia, PA 19123"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-75.134916, 39.968945]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "Custard & Cakes Creamery",
+      "address": "5461 Ridge Ave, Philadelphia, PA 19128"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-75.207731, 40.02323]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "Franklin Fountain",
+      "address": "116 Market St, Philadelphia, PA 19106"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-75.142883, 39.949522]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "Big Gay Ice Cream",
+      "address": "1351 South St, Philadelphia, PA 19147"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-75.16484, 39.943666]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "Bassetts Ice Cream",
+      "address": "45 N 12th St, Philadelphia, PA 19107"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-75.159075, 39.953148]
+    }
+  }
+]

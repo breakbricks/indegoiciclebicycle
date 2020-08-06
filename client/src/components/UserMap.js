@@ -10,6 +10,7 @@ import {
   ToggleEBikesBtn,
   ToggleDocksBtn,
   ToggleColBtn,
+  ToggleIcicleBtn,
 } from "./UserBtns";
 import { Box, Heading } from "grommet";
 import { Bike, FormClock, FormLocation } from "grommet-icons";
@@ -24,6 +25,8 @@ import "../App.css";
 
 import API from "../utils/API";
 import dirstyles from "../dirstyles.json";
+import wooderice from "../wooderice.json";
+import icicle from "../assets/icicle.png";
 
 //core Mapbox
 import mapboxgl from "mapbox-gl";
@@ -171,6 +174,35 @@ export const UserMap = () => {
       //console.log(efiltered);
       //console.log(lanes);
 
+      //========= wooder ice layer =========/
+
+      map.loadImage(
+        // 'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
+        icicle,
+        function (error, image) {
+          if (error) throw error;
+          map.addImage("icicle-marker", image);
+
+          // Add a symbol layer
+          map.addLayer({
+            id: "woodericicle",
+            type: "symbol",
+            source: {
+              type: "geojson",
+              data: {
+                type: "FeatureCollection",
+                features: wooderice,
+              },
+            },
+            layout: {
+              "icon-image": "icicle-marker",
+              "icon-size": 0.5,
+              visibility: "none",
+            },
+          });
+        }
+      );
+
       //=====collisions data layer======/
       map.addLayer({
         id: "collisions",
@@ -255,8 +287,8 @@ export const UserMap = () => {
           visibility: "none",
         },
         paint: {
-          "circle-radius": 6,
-          "circle-color": "#d4381b",
+          "circle-radius": 10,
+          "circle-color": "#eb8704",
           "circle-opacity": 0.8,
         },
       });
@@ -276,21 +308,21 @@ export const UserMap = () => {
           visibility: "none",
         },
         paint: {
-          "circle-radius": 6,
+          "circle-radius": 8,
           "circle-color": "#c8c700",
           "circle-opacity": 0.5,
         },
       });
 
-      map.loadImage(
+      /* map.loadImage(
         // 'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
         icon,
         function (error, image) {
           if (error) throw error;
-          map.addImage("custom-marker", image);
+          map.addImage("custom-marker", image);*/
 
-          //feed FILTERED indego station geojson data here
-          /*map.addSource("points", {
+      //feed FILTERED indego station geojson data here
+      /*map.addSource("points", {
             type: "geojson",
             data: {
               type: "FeatureCollection",
@@ -298,28 +330,64 @@ export const UserMap = () => {
             },
           });*/
 
-          // Add a symbol layer
-          map.addLayer({
-            id: "bikestations",
-            type: "circle",
-            source: {
-              type: "geojson",
-              data: {
-                type: "FeatureCollection",
-                features: bfiltered,
-              },
-            },
-            layout: {
-              visibility: "none",
-            },
-            paint: {
-              "circle-radius": 6,
-              "circle-color": "#2d3e8b",
-              "circle-opacity": 0.6,
-            },
-          });
+      // Add a symbol layer
+      map.addLayer({
+        id: "bikestations",
+        type: "circle",
+        source: {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: bfiltered,
+          },
+        },
+        layout: {
+          visibility: "none",
+        },
+        paint: {
+          "circle-radius": 6,
+          "circle-color": "#2d3e8b",
+          "circle-opacity": 0.6,
+        },
+      });
+      //}
+      // );
+
+      // Create a popup for layer id: woodericicle, but don't add it to the map yet.
+      const iciclepopup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+      });
+
+      map.on("mouseenter", "woodericicle", function (e) {
+        // Change the cursor style as a UI indicator.
+        map.getCanvas().style.cursor = "pointer";
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const iciclename = e.features[0].properties.name;
+        const icicleadd = e.features[0].properties.address;
+
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
-      );
+
+        // Populate the popup and set its coordinates
+        // based on the feature found.
+        iciclepopup
+          .setLngLat(coordinates)
+          .setHTML(
+            `<p>${iciclename}</p>
+            <h4>${icicleadd}</h4>`
+          )
+          .addTo(map);
+      });
+
+      map.on("mouseleave", "places", function () {
+        map.getCanvas().style.cursor = "";
+        iciclepopup.remove();
+      });
 
       const flyToStation = (current) => {
         /*map.flyTo({
@@ -364,6 +432,13 @@ export const UserMap = () => {
         }
       });
     });
+  };
+
+  //toggle woodericicle layer
+  const toggleLayerIcicle = () => {
+    return map.getLayoutProperty("woodericicle", "visibility") === "visible"
+      ? map.setLayoutProperty("woodericicle", "visibility", "none")
+      : map.setLayoutProperty("woodericicle", "visibility", "visible");
   };
 
   //toggle bikestations markers layer
@@ -706,6 +781,7 @@ export const UserMap = () => {
             <ToggleSRoutesBtn onClick={() => toggleLayerR()} />
             <ToggleBLanesBtn onClick={() => toggleLayerBL()} />
             <ToggleColBtn onClick={() => toggleLayerCol()} />
+            <ToggleIcicleBtn onClick={() => toggleLayerIcicle()} />
           </Box>
         </div>
         <br></br>
