@@ -530,10 +530,23 @@ export const UserMap = () => {
     try {
       API.saveRoute({
         user_id: user.email,
-        ostation_id: route[0].properties.id,
-        ostation_name: route[0].properties.name,
-        ostation_address: route[0].properties.addressStreet,
-        origin: route[0].geometry.coordinates,
+        //get second last in array
+        ostation_id:
+          route.length > 2
+            ? route[route.length - 2].properties.id
+            : route[0].properties.id,
+        ostation_name:
+          route.length > 2
+            ? route[route.length - 2].properties.name
+            : route[0].properties.name,
+        ostation_address:
+          route.length > 2
+            ? route[route.length - 2].properties.addressStreet
+            : route[0].properties.addressStreet,
+        origin:
+          route.length > 2
+            ? route[route.length - 2].geometry.coordinates
+            : route[0].geometry.coordinates,
         //make last in the array the destination?
         dstation_id: route[route.length - 1].properties.id,
         dstation_name: route[route.length - 1].properties.name,
