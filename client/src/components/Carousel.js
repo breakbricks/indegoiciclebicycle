@@ -56,7 +56,8 @@ export const InfoCarousel = ({ initialChild, ...props }) => {
               <br></br>
               <ul>
                 <li>
-                  get directions to &amp; from stations/ origin/ destination{" "}
+                  save routes &amp; view saved routes and retrieve turn-by-turn
+                  directions
                 </li>
               </ul>
               <br></br>
