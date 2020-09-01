@@ -8,7 +8,6 @@ an app that allows users to:
 
 - view indego bike share stations across philly
 - get directions to & from stations/ origin/ destination
-- get directions to & from stations/ origin/ destination
 - toggle map layers on & off
 
 ## why
